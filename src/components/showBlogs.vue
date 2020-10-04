@@ -2,8 +2,8 @@
   <div v-theme:column="'narrow'" id="show-blogs">
       <h1>All blog articles</h1>
       <div v-for="post in posts" v-bind:key="post.id" class="single-blog">
-        <h3 v-rainbow>{{post.title}}</h3>
-        <article>{{post.body}}</article>
+        <h3 v-rainbow>{{uppercaseTitle(post.title)}}</h3>
+        <article>{{sliceBody(post.body)}}</article>
       </div>
   </div>
 </template>
@@ -16,8 +16,16 @@ export default {
             posts: []
         }
     },
+    computed: {
+        
+    },
     methods: {
-
+        uppercaseTitle(title){
+            return title.toUpperCase();
+        },
+        sliceBody(body){
+            return body.slice(0,100)+'...';
+        }
     },
     created(){
         this.$http.get('https://jsonplaceholder.typicode.com/posts').then((data)=>{
