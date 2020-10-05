@@ -33,6 +33,27 @@ export default {
             return body.slice(0,100)+'...';
         }
     },
+    directives: {
+        'rainbow': {
+            beforeMount(el){
+                el.style.color = '#'+ Math.random().toString().slice(2,8)
+            }
+        },
+        'theme': {
+            beforeMount(el,bind){
+                if(bind.value == 'wide'){
+                    el.style.maxWidth = '1200px';
+                }else if(bind.value == 'narrow'){
+                    el.style.maxWidth = '560px';
+                }
+
+                if(bind.arg == 'column'){
+                    el.style.background = '#ddd';
+                    el.style.padding = '20px';
+                }
+            }
+        }
+    },
     created(){
         this.$http.get('https://jsonplaceholder.typicode.com/posts').then((data)=>{
             //console.log(data);
