@@ -1,15 +1,16 @@
 <template>
   <div v-theme:column="'narrow'" id="show-blogs">
-      <h1>All blog articles</h1>
+      <h1>List blog titles</h1>
       <input type="text" v-model="search" placeholder="search posts">
       <div v-for="post in filteredPosts" v-bind:key="post.id" class="single-blog">
         <h3 v-rainbow>{{uppercaseTitle(post.title)}}</h3>
-        <article>{{sliceBody(post.body)}}</article>
+        
       </div>
   </div>
 </template>
 
 <script>
+
 import searchMixin from '../mixins/searchMixin';
 
 export default {
